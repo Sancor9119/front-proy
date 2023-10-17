@@ -1,0 +1,31 @@
+<div class="col-md-4 mx-auto">
+
+    <div class="card">
+        <div class="card-body">
+            <script>
+// Función para manejar el clic en el botón de descarga
+document.getElementById("descargarBoton").addEventListener("click", function() {
+    // Contenido del archivo de texto
+    const contenido = "Este es el contenido del archivo de texto que deseas descargar.";
+
+    // Crea un Blob a partir del contenido del archivo
+    const blob = new Blob([contenido], { type: "text/plain" });
+
+    // Crea una URL de datos (data URL) a partir del Blob
+    const url = window.URL.createObjectURL(blob);
+
+    // Crea un elemento de enlace (<a>) para descargar el archivo
+    const enlaceDescarga = document.createElement("a");
+    enlaceDescarga.href = url;
+    enlaceDescarga.download = "archivo_de_texto.txt"; // Nombre del archivo de descarga
+
+    // Simula un clic en el enlace para iniciar la descarga
+    enlaceDescarga.click();
+
+    // Libera la URL de datos (es importante hacerlo para evitar pérdida de memoria)
+    window.URL.revokeObjectURL(url);
+});
+</script>
+        </div>
+    </div>
+</div>

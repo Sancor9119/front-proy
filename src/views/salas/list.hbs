@@ -1,0 +1,95 @@
+<div class="container p-4">
+    <div class="row">
+        {{#each salas}}
+        <div class="col-md-4">
+            <div class="card text-center" style="border-radius: 25px;">
+                <div class="card-body" style="color:gray;">
+                    <a href="/salas/inSala/{{tokenS}}" target="_blank">
+                        <h3 class="card-title text-uppercase">
+                            {{title}}
+                        </h3>
+                    </a>
+                    <p class="m-3">{{description}}</p>
+                    <p class="text-muted">
+                        Sala de Trabajo
+                    </p>
+                    <div class="row">
+    <div class="col-4">
+        <a class="btn btn-outline-primary mb-3" href="/salas/listUsuarios/{{id}}">
+            Share
+        </a>
+    </div>
+    <div class="col-4">
+        <a class="btn btn-outline-primary mb-3" href="/salas/edit/{{id}}">
+            Edit
+        </a>
+    </div>
+    <div class="col-4">
+        <a class="btn btn-outline-danger mb-3" href="/salas/delete/{{id}}">
+            Delete
+        </a>
+    </div>
+    <div class="col-3">
+        <a class="btn btn-outline-secondary mb-3" href="/salas/exportar/{{id}}">
+            Export
+        </a>
+    </div>
+    <div class="col-4">
+        <a class="btn btn-outline-secondary mb-3" href="/salas/exportar/{{id}}">
+            Export XMI
+        </a>
+    </div>
+    <div class="col-3">
+        <a class="btn btn-outline-success mb-3" href="/salas/exportar/{{id}}">
+            Export Java
+        </a>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-outline-success mb-3" href="/salas/exportar/{{id}}">
+            Export Python
+        </a>
+    </div>
+    <div class="col-5">
+        <a class="btn btn-outline-success"  id="descargarBoton">
+            Export Visual Basic
+        </a>
+    </div>
+                <script>
+// Función para manejar el clic en el botón de descarga
+document.getElementById("descargarBoton").addEventListener("click", function() {
+    // Contenido del archivo de texto
+    const contenido = "Este es el contenido del archivo de texto que deseas descargar.";
+
+    // Crea un Blob a partir del contenido del archivo
+    const blob = new Blob([contenido], { type: "text/plain" });
+
+    // Crea una URL de datos (data URL) a partir del Blob
+    const url = window.URL.createObjectURL(blob);
+
+    // Crea un elemento de enlace (<a>) para descargar el archivo
+    const enlaceDescarga = document.createElement("a");
+    enlaceDescarga.href = url;
+    enlaceDescarga.download = "archivo_de_texto.txt"; // Nombre del archivo de descarga
+
+    // Simula un clic en el enlace para iniciar la descarga
+    enlaceDescarga.click();
+
+    // Libera la URL de datos (es importante hacerlo para evitar pérdida de memoria)
+    window.URL.revokeObjectURL(url);
+});
+</script>
+</div>
+
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <div class="col-md-4 mx-auto">
+            <div class="card card-body text-center">
+                <p>No hay ninguna sala para este usuario.</p>
+                <a href="/salas/add">Crea Uno!</a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
